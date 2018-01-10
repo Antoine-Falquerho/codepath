@@ -1,0 +1,37 @@
+class Solution
+  # @param a : integer
+  # @return an array of array of integers
+  def prettyPrint(a)
+    n = (2*a) - 1
+
+    aa = Array.new(n){|i| Array.new(n){|j| 
+      
+      abs = 
+      if((a-i) > 0 )                
+        a - i
+      else
+        if(n == (i + 1) )
+          a
+        else
+          (i+1) - a + 1
+        end
+      end
+
+      ordinate = 
+      if((a-j) > 0 )        
+        a - j
+      else       
+        if(n == (j + 1) )
+          a
+        else
+          (j+1) - a + 1
+        end
+      end
+      abs > ordinate ? abs : ordinate
+      }}
+
+      aa 
+  end
+end
+
+p Solution.new.prettyPrint(4)

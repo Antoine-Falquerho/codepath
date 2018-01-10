@@ -1,0 +1,24 @@
+class Solution
+    # @param a : array of integers
+    # @return an array of integers
+    def nextGreater(a)
+    	new_array = []
+    	i = 0    	
+    	while i < a.size
+    		j = i
+    		min_max = nil
+
+    		while j < a.size do
+    			min_max = a[j] if (a[j] > a[i] and min_max.nil?)
+    			j += 1
+    		end
+    		min_max = -1 if min_max == nil
+    		new_array.push(min_max)
+    		i += 1    		
+    	end
+
+    	return new_array
+    end
+end
+
+p Solution.new.nextGreater([4, 5, 2, 10])
