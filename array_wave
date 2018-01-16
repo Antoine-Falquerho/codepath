@@ -1,0 +1,13 @@
+class Solution
+    # @param a : array of integers
+    # @return an array of integers
+    def wave(a)
+        b = a.sort.each_slice(2).to_a
+        final = []
+        b.each do |x, y |
+        	final.push(y) if y
+        	final.push(x) if x
+        end
+        return final
+    end
+end

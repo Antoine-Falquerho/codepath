@@ -1,0 +1,14 @@
+class Solution
+    # @param a : string
+    # @param b : string
+    # @return an integer
+    def strStr(a, b)
+
+        result = a.index(b)
+        if result.nil?
+            return -1
+        end
+        result
+        
+    end
+end

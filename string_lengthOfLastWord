@@ -1,0 +1,17 @@
+class Solution
+    # @param a : string
+    # @return an integer
+    def lengthOfLastWord(a)
+        if(a.size > 0)
+            if(a.split(" ").last)
+                a.split(" ").last.size
+            else
+                0
+            end
+        else
+            0
+        end
+        
+
+    end
+end

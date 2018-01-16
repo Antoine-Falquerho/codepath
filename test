@@ -1,0 +1,44 @@
+# Complete the function below.
+
+def winner(andrea, maria, s)
+  andrea_points = 0
+    maria_points = 0
+  i = 0
+  while i < andrea.size do
+    if(s == "Even")
+      if(i % 2 == 0)
+        p "i=#{i}"
+         andrea_points += andrea[i] - maria[i]
+         maria_points += maria[i] - andrea[i]
+       else
+        p "i=#{i} -----"
+      end
+    else
+      if(i % 2 != 0)
+        andrea_points += andrea[i] - maria[i]
+        maria_points += maria[i] - andrea[i]   
+      end
+    end
+   
+   p andrea_points
+   p maria_points 
+   p "---"  
+    #increment counter
+    i += 1
+  end
+
+  p "Andrea #{andrea_points}"
+  p "Maria #{maria_points}"
+
+
+  winner = "Tie"
+  if(maria_points > andrea_points)
+    winner = "Maria"
+  elsif(andrea_points > maria_points)
+    winner = "Andrea"
+  end
+  return winner
+end
+
+
+p winner([1,2,3], [2,1,3], "Even")

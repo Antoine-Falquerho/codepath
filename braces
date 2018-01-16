@@ -1,0 +1,48 @@
+# Complete the function below.
+
+VALUES = {")" => "(","]" => "[","}" => "{"}
+def braces(values)	
+	opening = ["(", "[", "{"]
+	results = []
+	i = 0
+	
+	while i < values.size		
+		p "i=#{i}"
+		opened = []
+		str = values[i].split("")
+
+		bad_start = false
+		str.each do |x|			
+			if(opening.include?(x))
+				opened.push(x)
+				# p "add #{x}"
+			else
+				# p " ------"
+				# p "x=#{x}"
+				# p "opened=#{opened}"
+				# p "VALUES[x]=#{VALUES[x]}"
+				# p "opened.last=#{opened.last}"
+				# p " ------"
+				if(VALUES[x] == opened.last)
+					# p "remove #{x}"
+					opened.pop
+				else
+					bad_start = true
+				end
+			end			
+		end
+
+		if(opened.size == 0 and bad_start == false)
+			results.push("YES")
+		else
+			results.push("NO")
+		end
+		i += 1
+
+	end 
+
+	return results
+
+end
+
+p braces(["{}[]()","{[}]", "]"])
