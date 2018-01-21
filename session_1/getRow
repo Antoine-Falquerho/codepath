@@ -1,0 +1,35 @@
+class Solution
+    # @param a : integer
+    # @return an array of integers
+    def getRow(a)
+        result = []
+        if(a == 0)
+           return [1] 
+        # end
+    # 	    nil 
+    	elsif(a == 1)
+    	    return [1,1]
+    	else
+        	result = [[1], [1,1]]
+        
+        	i = 0
+        	while i < (a-1) do				
+        		last_line = result.last
+        		new_line = []
+        		new_line << 1
+        		line = 1
+        		while line <= (last_line.length - 1) do			
+        			new_line << last_line[line-1] + last_line[line]			
+        			line += 1
+        		end
+        		new_line << 1
+        		result << new_line
+        		i += 1
+        	end 
+        result= result.last
+
+        end
+        result
+
+    end
+end

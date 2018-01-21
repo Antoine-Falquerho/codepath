@@ -1,0 +1,23 @@
+class Solution
+    # @param a : constant array of integers
+    # @return a string
+    def largestNumber(a)
+    	numbers = []
+    	i = 0
+    	while i < a.size do
+    		numbers << a[i].to_s.split("")    
+    		i += 1		
+    	end
+p numbers
+    	sorted = numbers.sort{|a,b| b<=>a}    	
+    	if(sorted.first.join("").to_i > 0)
+    		return sorted.flatten.join("")
+    	else
+    		return 0
+    	end
+
+    end
+end
+
+
+p Solution.new.largestNumber([12, 121])

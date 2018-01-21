@@ -1,0 +1,46 @@
+class Solution
+    # @param a : array of integers
+    # @return an integer
+    # def firstMissingPositive(a)
+
+    # 	c_number = 1
+    # 	i = 0
+    # 	while i < a.size do    		
+    # 		if(a.include?(c_number))
+    # 			i += 1
+    # 		else
+    # 			return c_number
+    # 		end
+    # 		c_number += 1
+    # 	end
+    # 	return c_number
+
+    # end
+
+    def firstMissingPositive(a)
+    	
+    	hash = {}
+    	i = 0
+    	
+    	while i < a.size do
+    		if (a[i] > 0)
+    			hash[a[i]] = true
+    		end
+
+    		i += 1
+    	end
+
+    	j = 0
+    	while true do
+    		if(hash[j+1])
+    			j += 1    			
+    		else
+    			return j + 1
+    		end
+    	end
+
+    end
+end
+
+
+p Solution.new.firstMissingPositive([-4])

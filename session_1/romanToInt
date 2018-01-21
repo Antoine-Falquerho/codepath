@@ -1,0 +1,53 @@
+class Solution
+    # @param a : string
+    # @return an integer
+    def romanToInt(a)
+
+    	hash = {
+      "M" => 1000,
+      "CM" => 900,
+      "D" => 500,
+      "CD" => 400,
+      "C" => 100,
+      "XC" => 90,
+      "L" => 50,
+      "XL" => 40,
+      "X" => 10,
+      "IX" => 9,
+      "V" => 5,
+      "IV" => 4,
+      "I" => 1
+    }
+
+    	letters = a.split("")
+    	result = 0
+    	i = 0
+    	while(i < letters.size)
+    		if(hash[letters[i..i+1].join("")])
+    			result += hash[letters[i..i+1].join("")]
+    			i += 1
+    		else
+    			result += hash[letters[i]]
+    		end
+    		# if(letters[i] == "X")
+    		# 	result += 10
+    		# elsif(letters[i] == "V")
+    		# 	result += 5
+    		# elsif(letters[i] == "I")
+    		# 	if(letters[i +1] == "V")
+    		# 		result += 4
+    		# 		i += 1
+    		# 	else
+    		# 		result += 1
+    		# 	end
+    		# end
+    		i += 1
+    			
+    	end
+
+		return result
+    end
+end
+
+
+p Solution.new.romanToInt("MDCCCIV")
