@@ -1,0 +1,48 @@
+# Definition for singly-linked list.
+# class ListNode
+#     attr_accessor :next,:data
+#     def initialize(data)
+#         @data = data
+#         @next=nil
+#     end
+# end
+
+class Solution
+    # @param a : head node of linked list
+    # @param b : head node of linked list
+    # @return the head node in the linked list
+    def addTwoNumbers(a, b)
+        head1 = a
+        head2 = b
+        carry = 0
+        temp_head = ListNode.new(0)
+        head = temp_head
+        while head1 && head2 do
+            num = (head1.data + head2.data+carry)%10
+            carry = (head1.data + head2.data+carry)/10
+            head.next = ListNode.new(num)
+            head = head.next
+            head1 = head1.next
+            head2 = head2.next
+        end
+        while head1 != nil
+            num = (head1.data + carry)%10
+            carry = (head1.data + carry)/10
+            head.next = ListNode.new(num)
+            head = head.next
+            head1 = head1.next
+        end
+        while head2 != nil
+            num = (head2.data + carry)%10
+            carry = (head2.data + carry)/10
+            head.next = ListNode.new(num)
+            head = head.next
+            head2 = head2.next
+        end
+        if carry != 0
+            head.next = ListNode.new(carry)
+        end
+        return temp_head.next 
+
+    end
+end

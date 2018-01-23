@@ -1,0 +1,24 @@
+class Solution
+    # @param a : constant array of integers
+    # @param b : integer
+    # @return an integer
+    def diffPossible(a, b)
+    	i = 0
+
+    	while i < a.size do
+    		j = 0
+    		while j < a.size do
+    			if i != j 
+    				if(a[i] - a[j]) == b    					
+	    				return 1 
+	    			end
+    			end
+
+    			j += 1
+    		end
+    		i += 1
+    	end
+
+    	return 0
+    end
+end
