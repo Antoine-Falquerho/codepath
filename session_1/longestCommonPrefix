@@ -9,8 +9,7 @@ class Solution
         while i < oneString.size            
             j = 0
             c_prefix = oneString[0..i]            
-            while j < a.size    
-            p      a[j][0..i]     
+            while j < a.size     
                 if(a[j][0..i] != c_prefix)                  
                     return a[j][0...i]
                 else

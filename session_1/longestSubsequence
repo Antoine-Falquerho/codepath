@@ -1,0 +1,28 @@
+# Complete the function below.
+
+def longestSubsequence(x, y)
+	x_a = x.split("")
+	y_a = y.split("")
+	common_letters = (x_a - (x_a - y_a))
+	result = 0
+
+	hash = {}
+	i = 0
+	while(i < common_letters.size) do
+		c = (x_a.count(common_letters[i]) >= y_a.count(common_letters[i])) ? y_a.count(common_letters[i]) : x_a.count(common_letters[i])
+		hash[common_letters[i]] = c
+		i += 1
+	end
+
+	hash.each do |l, cc|
+
+		p cc
+		result += cc
+	end
+
+	return result
+
+end
+
+
+p longestSubsequence("hhackerranks", "hhhackers")
