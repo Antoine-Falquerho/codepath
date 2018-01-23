@@ -29,18 +29,6 @@ class Solution
     		else
     			result += hash[letters[i]]
     		end
-    		# if(letters[i] == "X")
-    		# 	result += 10
-    		# elsif(letters[i] == "V")
-    		# 	result += 5
-    		# elsif(letters[i] == "I")
-    		# 	if(letters[i +1] == "V")
-    		# 		result += 4
-    		# 		i += 1
-    		# 	else
-    		# 		result += 1
-    		# 	end
-    		# end
     		i += 1
     			
     	end
