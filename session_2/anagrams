@@ -2,39 +2,42 @@ class Solution
     # @param a : constant array of strings
     # @return an array of array of integers
     def anagrams(a)
-    	hashes = {}
-    	result = []
+        hashes = {}
+        result = []
 
-    	i = 0
-    	while i < a.size do
-    		new_hash = {}
-    		word = a[i].split("")
-    		j = 0
-    		while j < a.size do    			
-    			new_hash[word[j]] = word.count(word[j])    			
-    			j += 1
-    		end
-    		hashes[i] = new_hash
-    		i += 1
-    	end
+        i = 0
+        while i < a.size do
+            new_hash = {}
+            word = a[i].split("")
+            j = 0
+            while j < a.size do             
+                new_hash[word[j]] = word.count(word[j])             
+                j += 1
+            end
+            hashes[i] = new_hash
+            i += 1
+        end
 
-    	i = 0
-    	while i < hashes.size do
-    		j = 0 
-    		while j < hashes.size do
-    			if hashes[i] == hashes[j]
-    				if i < j
-    					result << [i+1, j+1]
-    				end
-    			end
-    			j += 1
-    		end
-    		i += 1
-    	end
-    	
-    	if result.size <= 1
-    	   return [1]
-    	end
-		result
+        i = 0
+        while i < hashes.size do
+            j = 0 
+            while j < hashes.size do
+                if hashes[i] == hashes[j]
+                    if i < j
+                        result << [i+1 j+1]
+                    end
+                end
+                j += 1
+            end
+            i += 1
+        end
+        
+        if a.size <= 1
+           result = [1]
+        end
+        result.delete(0)
     end
 end
+
+
+p Solution.new.anagrams([ "b" ])

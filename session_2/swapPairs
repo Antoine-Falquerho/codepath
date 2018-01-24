@@ -1,0 +1,36 @@
+# Definition for singly-linked list.
+class ListNode
+    attr_accessor :next,:data
+    def initialize(data)
+        @data = data
+        @next=nil
+    end
+end
+
+class Solution
+    # @param a : head node of linked list
+    # @return the head node in the linked list
+    def swapPairs(a)
+        b = nil
+        while a do
+            # p "fuckk"
+            first = a
+            second = a.next
+
+            p first
+            p second
+            
+            # b = second
+            # b.next = first
+            a = a.next
+        end
+
+        return b
+    end
+end
+
+a= ListNode.new(2)
+b= ListNode.new(3)
+b.next = nil
+a.next = b
+p Solution.new.swapPairs(a)

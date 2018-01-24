@@ -1,0 +1,21 @@
+class Solution
+    # @param a : string
+    # @param b : constant array of strings
+    # @return an array of integers
+    def findSubstring(a, b)
+    	indexes = []
+    	words = a.split("").each_slice(3).to_a.map{|word| word.join("")}
+
+    	i = 0
+    	while i < a.size do
+    		
+    		
+    	end 
+
+
+    end
+end
+
+p Solution.new.findSubstring("barfoothefoobarman", [ "foo", "bar" ])
+
+# [0,9]

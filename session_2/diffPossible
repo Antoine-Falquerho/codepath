@@ -3,22 +3,54 @@ class Solution
     # @param b : integer
     # @return an integer
     def diffPossible(a, b)
-    	i = 0
+        return 0 if b == 0 and a.size <= 1
+        # return 0 if 
+        
+        
+        i = 0
+        hash = {}
+        
+        while i < a.size do
+            if(hash[a[i]])
+               hash[a[i]] << i 
+            else
+                hash[a[i]] = [i]
+            end
+            i += 1
+        end
+        
+        j = 0
+        while j < a.size do
+            # p a[j] - b
+            # p hash[a[j] - b]
+            # p hash[a[j] - b].include?(j)
 
-    	while i < a.size do
-    		j = 0
-    		while j < a.size do
-    			if i != j 
-    				if(a[i] - a[j]) == b    					
-	    				return 1 
-	    			end
-    			end
+            if((hash.key? (a[j] - b)) and !(hash[a[j] - b] == [j]))
+                return 1 
+            end
+            
+            j += 1
+        end
+        
+        
 
-    			j += 1
-    		end
-    		i += 1
-    	end
+    #   while i < a.size do
+    #       j = 0
+    #       while j < a.size do
+    #           if i != j 
+    #               if(a[i] - a[j]) == b                        
+       #                return 1
+       #            end
+    #           end
 
-    	return 0
+    #           j += 1
+    #       end
+    #       i += 1
+    #   end
+
+        return 0
     end
 end
+
+
+p Solution.new.diffPossible([ 1, 5, 4, 1, 2 ], 0)
