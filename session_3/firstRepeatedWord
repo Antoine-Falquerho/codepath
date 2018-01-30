@@ -1,0 +1,9 @@
+def firstRepeatedWord(s)
+    myHash = {}
+    s.split(" ").each do |word|
+        return word if myHash[word]
+        myHash[word] = true
+    end
+    
+    return nil
+end

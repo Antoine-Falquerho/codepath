@@ -7,30 +7,60 @@ class ListNode
     end
 end
 
-class Solution
+class Solution    
     # @param a : head node of linked list
     # @return the head node in the linked list
-    def swapPairs(a)
-        b = nil
+    def swapPairs(a)       
+
+        return a unless a.next 
+        root = nil        
+        c_p = nil
         while a do
-            # p "fuckk"
             first = a
             second = a.next
-
-            p first
-            p second
             
-            # b = second
-            # b.next = first
-            a = a.next
+            if(root == nil)
+                c = ListNode.new(first.data)
+                c.next = second.next
+                root = ListNode.new(second.data)
+                root.next = c
+                c_p = a.next.next
+            else
+                if(first and second)
+                    c = ListNode.new(first.data)
+                    c.next = second.next                
+                    c_p.data = second.data
+                    # p c
+                    c_p.next = c                
+                    c_p = c_p.next.next
+                end
+
+            end
+            
+            return root if a.next == nil or a.next.next == nil
+            a = a.next.next
         end
 
-        return b
+        return root
     end
 end
 
-a= ListNode.new(2)
-b= ListNode.new(3)
-b.next = nil
+a= ListNode.new(1)
+b= ListNode.new(2)
+c= ListNode.new(3)
+d= ListNode.new(4)
+e= ListNode.new(5)
+f= ListNode.new(6)
+# d.next = nil
+e.next = f
+d.next = e
+c.next = d
+b.next = c
 a.next = b
-p Solution.new.swapPairs(a)
+sol =  Solution.new.swapPairs(a)
+
+p "----"
+while sol do
+    p sol.data
+    sol = sol.next
+end

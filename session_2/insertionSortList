@@ -1,3 +1,4 @@
+require 'debugger'
 # Definition for singly-linked list.
 class ListNode
     attr_accessor :next,:data
@@ -10,47 +11,82 @@ end
 class Solution
     # @param a : head node of linked list
     # @return the head node in the linked list
-    def insertionSortList(a)
-        newList = nil
+    def insertionSortList(a)        
+        pointer = ListNode.new(a.data)
+        a = a.next
         
-        pointer = a
-        
-        while pointer do
-
-            if(!newList)
-                newList = ListNode.new(pointer.data)
+        while a do
+            if(a.data < pointer.data) #add at beginning if less than the head
+                old_first = pointer
+                pointer = ListNode.new(a.data)
+                pointer.next = old_first
             else
-                copy_newList = newList
-                while copy_newList do
-                    p copy_newList.data
-                    p pointer.data
-                    p copy_newList
-                    # if(copy_newList.data > pointer.data)
-                    #     new_node = ListNode.new(pointer.data)
-                    #     temp = copy_newList
-                    #     new_node.next = copy_newList.data
-                    #     copy_newList.data = new_node                        
-                    # end
-                    if(copy_newList.data > pointer.data)
-                        temp = copy_newList
-                        copy_newList = ListNode.new(pointer.data)
-                        copy_newList.next = temp
-                        newList = copy_newList
-                        p "add before"
-                        p pointer.data
-                        p copy_newList.data
-                        # temp_data = copy_newList.data
-                        # temp_next = copy_newList.next
-                        # copy_newList = ListNode.new(pointer.data)
-                        # copy_newList.next = temp_data
-                    elsif !copy_newList.next
-                        copy_newList.next = ListNode.new(pointer.data)
-                        copy_newList = copy_newList.next
 
+                i_previous = pointer
+                i_pointer = pointer.next
+                if(i_pointer == nil and i_previous == pointer) #if the pointer head                  
+                    pointer.next = ListNode.new(a.data)
+
+                elsif i_pointer == nil #if another el of pointer but not the head                    
+                    i_previous.next = ListNode.new(a.data)
+                else
+                    while i_pointer do
+                        if(a.data < i_pointer.data)
+                            new_node = ListNode.new(a.data)
+                            new_node.next = i_pointer
+                            i_previous.next = new_node
+                            break
+                        elsif(i_pointer.next == nil)
+                            new_node = ListNode.new(a.data)                            
+                            i_pointer.next = new_node
+                            break
+                        end   
+                        i_previous = i_pointer
+                        i_pointer = i_pointer.next
                     end
-                    copy_newList = copy_newList.next
+                    
                 end
             end
+            a = a.next
+        end
+        return pointer
+
+    end
+end
+
+
+a = ListNode.new(1)
+b = ListNode.new(3)
+c = ListNode.new(2)
+d = ListNode.new(9)
+e = ListNode.new(11)
+f = ListNode.new(4)
+g = ListNode.new(5)
+h = ListNode.new(7)
+i = ListNode.new(6)
+
+a.next = nil
+# b.next = c
+# c.next = d
+# d.next = e
+# e.next = f
+# f.next = g
+# g.next = h
+# h.next = i
+# i.next = nil
+
+p_1 =  Solution.new.insertionSortList(a)
+
+p "restuls -----"
+while p_1 do
+    p p_1.data
+    p_1 = p_1.next
+end
+
+
+
+
+
             # else
             #     second_p = newList
             #     p "1111"
@@ -77,22 +113,3 @@ class Solution
             #        second_p = second_p.next 
             #     end
             # end
-            pointer = pointer.next
-        end
-        return newList
-
-    end
-end
-
-
-a = ListNode.new(2)
-a.next = ListNode.new(3)
-b = a.next
-b.next = ListNode.new(1)
-p_1 =  Solution.new.insertionSortList(a)
-
-p "restuls -----"
-while p_1 do
-    p p_1.data
-    p_1 = p_1.next
-end

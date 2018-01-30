@@ -1,0 +1,20 @@
+class Solution
+    # @param a : integer
+    # @param b : array of integers
+    # @return an integer
+    def nchoc(a, b)
+        count = 0
+        while a >a 0 do    
+            max = b.max
+            index = b.index(max)
+
+            count = count + b[index]
+            b[index] = (b[index] / 2)            
+            a -= 1
+        end
+        return count%(10**9 + 7)
+    end
+end
+
+
+p Solution.new.nchoc(10, [ 2147483647, 2000000014, 2147483647 ])

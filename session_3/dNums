@@ -1,0 +1,21 @@
+class Solution
+    # @param a : array of integers
+    # @param b : integer
+    # @return an array of integers
+    def dNums(a, b)
+        results = []
+        while a.size >= b do
+            c = a[0..(b-1)]
+            results << c.uniq.count
+            a = a[1..-1]
+        end 
+        # slices.each do |slice|
+        #     results << slice.uniq.count 
+        # end
+        
+        return results
+
+    end
+end
+
+p Solution.new.dNums([ 2, 7, 7, 81, 81 ], 1)

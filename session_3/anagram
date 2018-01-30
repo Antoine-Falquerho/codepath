@@ -1,0 +1,64 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+
+n = gets.to_i
+(0...n).each do |i|
+    lis = gets.strip.split(" ")
+    line = lis[0]
+#    puts line
+    
+        letterHashfirst = {}
+    letterHashsecond = {}
+    finalHahs = {}
+    count = 0
+    	
+        if line.length % 2 != 0
+            count = -1 
+        else
+        	first, second = line.chars.each_slice(line.length/2).map(&:join)
+        	first = first.split("")
+        	second = second.split("")
+        	first.each do |l|
+        		if letterHashfirst[l]
+        			letterHashfirst[l] += 1
+        		else
+        			letterHashfirst[l] = 1
+        		end
+        	end
+
+        	second.each do |l|
+        		if letterHashsecond[l]
+        			letterHashsecond[l] += 1
+        		else
+        			letterHashsecond[l] = 1
+        		end
+        	end
+        end
+
+        letterHashfirst.each do |key, value|
+        	finalHahs[key] = value
+        end
+
+        letterHashsecond.each do |key, value|
+        	if(finalHahs[key])
+        		if(finalHahs[key] - value > 0)
+        			finalHahs[key] = finalHahs[key] - value
+        		else
+					finalHahs[key] = value - finalHahs[key]
+        		end
+        	else
+        		finalHahs[key] = value
+        	end
+        end
+       
+
+    if(count >= 0)
+        finalHahs.each do |key, value|
+            count += value
+        end
+        puts count / 2
+    else
+        puts -1
+    end
+   
+end
+    

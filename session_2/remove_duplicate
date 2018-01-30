@@ -1,0 +1,88 @@
+class ListNode
+    attr_accessor :next,:data
+    def initialize(data)
+        @data = data
+        @next=nil
+    end
+end
+
+
+def removeDuplicate(list)
+  head_list = list
+  c_list = list
+  
+  existing_values = {}
+  previous_el = head_list
+  
+  while c_list do
+    if(existing_values[c_list.data])
+      previous_el.next = c_list.next        
+      p "should remove #{c_list.data}"
+      p "previous el #{previous_el.data}"
+    else
+      existing_values[c_list.data] = true
+    end
+
+    previous_el = c_list
+    c_list = c_list.next
+  end
+  
+  return head_list
+end
+
+
+# def removeDuplicate(list)
+#   head_list = list
+#   c_list = list
+  
+#     while c_list do      
+#       previous_el = nil
+#       while list do 
+#         if(list.data == c_list.data and list != c_list)          
+#           previous_el.next = list.next      
+#         end
+#         previous_el = list
+#         list = list.next
+#       end
+      
+#       list = c_list
+      
+#       c_list = c_list.next
+#     end
+#   return head_list
+# end
+
+# 12->11->12->21->41->43->21
+a = ListNode.new(12)
+b = ListNode.new(11)
+c = ListNode.new(12)
+d = ListNode.new(21)
+e = ListNode.new(41)
+f = ListNode.new(43)
+g = ListNode.new(21)
+
+
+a.next = b
+b.next = c
+c.next = d
+d.next = e
+e.next = f
+f.next = g
+g.next = nil
+
+# 12->11->12->21->41->43->21
+# 12->11->21->41->43
+
+# 1 -> 2 -> 1
+# 1 -> 2
+
+result = removeDuplicate(a)
+p " ------ "
+while result do 
+  p result.data
+  result = result.next
+end
+  
+ 
+# Complexity O(n2)
+  
