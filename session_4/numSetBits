@@ -1,0 +1,9 @@
+class Solution:
+    # @param A : integer
+    # @return an integer
+    def numSetBits(self, A):
+        return "{0:b}".format(A).count('1')
+        # if A:
+        #     int(A,2)
+        # else:
+        #     0

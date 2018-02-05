@@ -1,0 +1,10 @@
+def counts(nums, maxes)
+	results = []
+    maxes.each do |m|
+       results << nums.select{|n| n <= m}.count
+    end
+
+    p results
+end
+
+counts([1,4,2,4], [3,5])

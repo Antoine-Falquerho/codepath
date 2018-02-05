@@ -1,0 +1,47 @@
+# Complete the function below.
+class TreeNode
+    attr_accessor :left,:right,:data
+    def initialize(data)
+        @data = data
+        @left = nil
+        @right = nil
+    end
+end
+
+def createBST(keys)
+    tree = nil
+    keys.each do |k|
+        if tree.nil?            
+           p 0 
+           tree = TreeNode.new(k)
+        else
+            t = tree
+            counter = 0
+            while t do
+                counter += 1
+                if k < t.data
+                    if(t.left == nil)
+                        t.left = TreeNode.new(k)
+                        t = t.left
+                    else
+                        t = nil
+                    end
+                elsif k > t.data
+                    if(t.right == nil)
+                        t.right = TreeNode.new(k)
+                        t = nil
+                    else
+                        t = t.right
+                    end
+                else
+
+                    p "bug"
+                end
+            end
+            p counter
+            
+        end
+    end
+end
+
+createBST([1,2,4])

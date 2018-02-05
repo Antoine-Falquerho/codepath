@@ -1,0 +1,16 @@
+class Solution
+    # @param a : constant array of integers
+    # @return an integer
+    def singleNumber(a)
+        bits = 0
+        a.each do |b|
+          b.to_s(2)
+
+        end
+
+		return bits
+    end
+end
+
+
+p Solution.new.singleNumber([1,2,3,2,1])

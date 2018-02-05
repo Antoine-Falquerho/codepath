@@ -1,0 +1,23 @@
+class Solution
+    # @param a : integer
+    # @param b : integer
+    # @return an array of array of integers
+    def comb(start,k,temp,ans,n)
+    if temp.length == k
+        ans << temp.dup
+        return
+    end
+    (start..n).each do |i|
+        temp << i
+        comb(i+1,k,temp,ans,n)
+        temp.pop
+    end    
+end
+    def combine(n,k)
+    
+    list = []
+    comb(1,k,[],list,n)
+    puts if list.empty?
+    return list
+    end
+end

@@ -1,0 +1,25 @@
+class Solution
+    # @param a : array of integers
+    # @return an array of array of integers
+
+    def perm(nums,temp,list)
+    if(temp.length == nums.length)
+        list << temp
+        return
+    end
+    
+    (0...nums.length).each do |i|
+        if(!temp.include?(nums[i]))
+           temp << nums[i]
+           perm(nums,temp.dup,list)
+           temp.pop
+        end
+    end
+end
+
+def permute(nums)
+    list = []
+    perm(nums,[],list)
+    list
+end
+end
