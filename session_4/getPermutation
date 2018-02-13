@@ -1,0 +1,33 @@
+class Solution
+  # @param a : integer
+  # @param b : integer
+  # @return a string
+  def getPermutation(n, k)
+    return if n < 1
+    nums = (1..n).to_a
+    res = ''
+    t = factorial(n-1)
+    k -= 1
+    (n-1).downto(1).each do |i|
+      p = k/t
+      res << nums[p].to_s
+      nums.delete_at(p)
+      k = k - k/t * t
+      t /= i
+    end
+    res << nums.last.to_s
+    res
+  end
+  
+  private
+  
+  def factorial(n)
+    return 0 if n <= 0
+    return 1 if n == 1
+    res = 1
+    (1..n).each do |i|
+      res *= i
+    end
+    res
+  end
+end
