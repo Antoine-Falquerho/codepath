@@ -1,0 +1,30 @@
+class Solution
+    # param a : array of strings
+    #return an integer
+    def black(a)
+        row_length = a.length
+        col_length = a.first.length
+        
+        blacks = 0
+        for row in 0...row_length
+            for col in 0...col_length
+                if a[row][col] == 'X'
+                    blacks += 1 
+                    mark(a, row, col, row_length, col_length)
+                end
+            end
+        end
+        
+        return blacks
+    end
+    
+    def mark(a, row, col, rl, cl)
+        return if row < 0 || col < 0 || row >= rl || col >= cl
+        return if a[row][col] != 'X'
+        a[row][col] = 'O'
+        mark(a, row + 1, col, rl, cl)
+        mark(a, row - 1, col, rl, cl)
+        mark(a, row, col + 1, rl, cl)
+        mark(a, row, col - 1, rl, cl)
+    end
+end

@@ -1,0 +1,23 @@
+def getTheGroups(n, queryType, students1, students2)
+    hashMap = Hash.new
+    i = 1
+    while i <= n do
+       hashMap[i] = [i]
+       i += 1 
+    end 
+    students1.each do |s|
+#       ss = students1.delete(s)
+       hashMap[s] = students1
+    end
+    
+    total = 0
+    students2.each do |s|
+       total += hashMap[s].count
+    end
+        
+    return [total]
+#    puts hashMap
+        
+end
+
+p getTheGroups(2, "Total", [1], [1,2])

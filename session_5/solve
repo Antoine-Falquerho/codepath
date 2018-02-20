@@ -1,0 +1,46 @@
+class Solution
+    def solve(n_num, costs)
+        costs.sort!{|x,y| x[2]<=>y[2]}
+        # dset = UnionFind.new n_num
+        dset = DisjointSet.new n_num
+        total_cost = 0
+        i = 0
+        union_count = 0
+        while i < costs.size
+            nA, nB, cost = costs[i]
+            # if nA != nB && dset.union_if_not(nA-1, nB-1)
+            if nA != nB && !dset.connected?(nA-1, nB-1)
+                dset.union(nA-1, nB-1)
+                union_count += 1
+                total_cost += cost
+                break if union_count == n_num - 1
+            end
+            i += 1
+        end
+        total_cost
+    end
+end
+
+class DisjointSet
+  def initialize size
+    @set = Array.new(size) {|i| i }
+  end
+  def find i
+    while @set[i] != i
+      @set[i] = @set[@set[i]] # path compression
+      i = @set[i]
+    end
+    i
+  end
+  def union i, j
+    @set[find i] = find j
+  end
+  def connected? i, j
+    find(i) == find(j)
+  end
+  def union_if_not(i, j)
+    if (pi = find i) != (pj = find j)
+      @set[pi] = pj
+    end
+  end
+end
