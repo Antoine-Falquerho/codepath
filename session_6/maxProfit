@@ -1,0 +1,17 @@
+class Solution
+    # @param a : constant array of integers
+    # @return an integer
+    def maxProfit(prices)
+   left_min = 10000000
+   profit = 0
+   prices.each do |p|
+       if(p < left_min)           
+        left_min = p 
+       else
+           profit = [profit,p-left_min].max
+       end
+   end
+    profit
+
+    end
+end

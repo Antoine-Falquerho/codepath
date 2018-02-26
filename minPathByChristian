@@ -1,0 +1,86 @@
+// package whatever; // don't place package name!
+
+import java.io.*;
+
+class MyCode {
+  public static void main (String[] args) {
+    int[][] arr = { 
+      {1,2,1},
+      {1,5,1},
+      {4,2,1}
+    };
+    
+    MyCode.minimumPathSum(arr);
+  }
+  
+  
+  public static int minimumPathSum(int[][] grid) {
+    //check for null maybe
+    
+    int val = minimumPathSumRecursion(grid, grid.length-1, grid[0].length-1);
+    int vDp = minimumPathSumDP(grid);
+    
+    System.out.println("Recursion: " + val + " DP:" + vDp);
+    return vDp;
+   
+  }
+  
+  public static int minimumPathSumDP( int[][] grid) {
+    if(grid == null || grid.length < 1 || grid[0] == null || grid[0].length < 1) {
+      return 0;
+    }
+    
+    int[][] sums = new int[grid.length][grid[0].length];
+    
+    //base case
+    sums[0][0] = grid[0][0];
+    
+    //row case
+    for(int i=1; i<grid.length; i++) {
+      sums[i][0] = grid[i][0] + sums[i-1][0];
+    }
+    
+    //column case
+     for(int i=1; i<grid[0].length; i++) {
+      sums[0][i] = grid[0][i] + sums[0][i-1];
+    }
+    
+    //complex grid case
+    for(int i=1; i<grid.length; i++) {
+      for(int j=1; j<grid[0].length; j++) {
+        sums[i][j] = grid[i][j] + Math.min(sums[i][j-1], sums[i-1][j]);
+      }
+    }
+    
+    return sums[grid.length-1][grid[0].length-1];
+  }
+  
+  public static int minimumPathSumRecursion(int[][] grid, int x, int y) {
+     //grid is invalid
+    if(grid == null || grid.length < 1 || grid[0] == null || grid[0].length < 1) {
+      return 0;
+    }
+    
+    //case where it's just 1 [1]abstract
+    if(x == 0 && y == 0 ) {
+      return grid[x][y];
+    }
+  
+    
+    //row case
+    if( y == 0 ) {
+      return grid[x][y] + minimumPathSumRecursion(grid, x-1, y);
+    }
+    
+    
+    //column case
+    if(x == 0) {
+      return grid[x][y] + minimumPathSumRecursion(grid, x, y-1);
+    }
+    
+    
+    //complex grid case
+    return grid[x][y] + Math.min(minimumPathSumRecursion(grid, x-1, y),minimumPathSumRecursion(grid, x, y-1) );
+  }
+  
+}
