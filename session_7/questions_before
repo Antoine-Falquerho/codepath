@@ -1,0 +1,41 @@
+- What is an n+1 query and why is it harmful to application performance? How can you model your data or queries to avoid it?
+   It's better to write a query that return all the rows than making one query per row we want to get
+   If we have a list of 5 ids
+   The N+1 query would be
+   ids = [1,2,3,4,5]
+   ids.each do |id|
+   	SELECT * FROM my_table WHERE id = id
+   end
+
+   instead we should write something like
+   	SELECT * FROM my_table WHERE id in (1,2,3,4,5)
+
+
+Describe optimistic locking vs pessimistic locking. What are some scenarios in which you would use each?
+	Optimistic locking will use an attribute to make sure nothing updated the record between the time you got the record and the moment you are trying to update it
+	Pessimistic locking will lock the db until the update is done. The problem with that is that with high traffic, it can slow down all the requests to the db
+
+
+When would you use a randomly generated client ID (like a UUID) over an incrementing counter? What are some advantages and disadvantages to each?
+	UUID will generate an obfuscated id which can be usefull to hide how many elements the system has (the number of users for example).
+	It's also less likely to find a correct UUID if someone try to enter random numbers.
+	UUID is less (close to 0) likely to have a colision if the system is high traffic
+
+
+Why would you choose to process something asynchronously? How does error handling change in this case?
+	Asynchronous help to respond faster to the clients. If we have to write in the db or call another service but the response to the client doesn't need that, it's better to call the service asynchronously and return the response right away to the client.
+
+	In that case the error handling will be harder and might require a queue and scheduler to reprocess the failing calls. The db/service we are trying to call could be down. In that case we would reprocess the request later from the queue.
+
+When would you shard a database and what are some strategies for doing so? What complications does this bring?
+	We shoudl shard when the datastore start to be too big. 
+	It's important to shard using something uniq and well distributed. User id is not always the answer.
+	The goal is to share the request to all the shards and not have to query two different shards.
+	If we want to get all the log activity of a user, we should shard on the user id so the query will run only on one shard.
+	If the goal is to retrieve all the comments of a post, we should use the post id to shard the db
+
+	Non relational datastore could be helpful to scale services with high traffic instead of doing sharding.
+
+What types of security attacks should you be aware of as a backend developer (for example, SQL Injection)? How do you protect against these?
+	The service should escape all the user content from the request, if not the user could get access to sensible data.
+	DDOS attack can also kill a service. 
