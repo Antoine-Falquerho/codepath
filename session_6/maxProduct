@@ -1,0 +1,18 @@
+class Solution
+    # @param a : constant array of integers
+    # @return an integer
+    def maxProduct(nums)
+
+    dp = [nums[0]]
+    ans = nums[0]
+    min = nums[0]
+    max = nums[0]
+    (1...nums.length).each do |i|        
+        min,max = max,min if(nums[i]<0)
+        min = [min * nums[i],nums[i]].min
+        max = [max * nums[i],nums[i]].max
+        ans = [ans,max].max
+    end    
+    ans
+    end
+end
